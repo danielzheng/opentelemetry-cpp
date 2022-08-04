@@ -90,13 +90,13 @@ nostd::shared_ptr<trace_api::Span> Tracer::StartSpan(
                                 parent_context, std::move(span_context)}};
 
     // if the attributes is not nullptr, add attributes to the span.
-    if (sampling_result.attributes)
-    {
-      for (auto &kv : *sampling_result.attributes)
-      {
-        span->SetAttribute(kv.first, kv.second);
-      }
-    }
+//     if (sampling_result.attributes)
+//     {
+//       for (auto &kv : *sampling_result.attributes)
+//       {
+//         span->SetAttribute(kv.first, kv.second);
+//       }
+//     }
 
     return span;
   }
