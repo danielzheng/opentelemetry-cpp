@@ -85,9 +85,9 @@ nostd::shared_ptr<trace_api::Span> Tracer::StartSpan(
   else
   {
 
-    auto span = nostd::shared_ptr<trace_api::Span>{
-        new (std::nothrow) Span{this->shared_from_this(), name, attributes, links, options,
-                                parent_context, std::move(span_context)}};
+//     auto span = nostd::shared_ptr<trace_api::Span>{
+//         new (std::nothrow) Span{this->shared_from_this(), name, attributes, links, options,
+//                                 parent_context, std::move(span_context)}};
 
     // if the attributes is not nullptr, add attributes to the span.
 //     if (sampling_result.attributes)
@@ -98,7 +98,10 @@ nostd::shared_ptr<trace_api::Span> Tracer::StartSpan(
 //       }
 //     }
 
-    return span;
+//     return span;
+    auto noop_span = nostd::shared_ptr<trace_api::Span>{
+        new (std::nothrow) trace_api::NoopSpan(this->shared_from_this(), std::move(span_context))};
+    return noop_span;
   }
 }
 
